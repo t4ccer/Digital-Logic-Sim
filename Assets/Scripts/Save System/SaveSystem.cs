@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using UnityEngine;
 
 public static class SaveSystem {
@@ -64,4 +65,9 @@ public static class SaveSystem {
 		}
 	}
 
+	public static void DeleteProject(string projectName)
+    {
+		var path = Path.Combine(SaveDataDirectoryPath, projectName);
+		Directory.Delete(path, true);
+    }
 }
