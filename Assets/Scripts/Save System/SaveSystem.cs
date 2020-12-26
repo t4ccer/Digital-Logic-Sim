@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using UnityEditorInternal;
 using UnityEngine;
 
 public static class SaveSystem {
@@ -31,6 +32,22 @@ public static class SaveSystem {
 
 	public static string GetPathToWireSaveFile (string saveFileName) {
 		return Path.Combine (CurrentSaveProfileWireLayoutDirectoryPath, saveFileName + fileExtension);
+	}
+
+	public static void SaveOptions(ChipEditorOptions.Options options)
+    {
+		Init();
+		var path = Path.Combine(CurrentSaveProfileDirectoryPath, "options.json");
+		var json = JsonUtility.ToJson(options);
+		File.WriteAllText(path, json);
+	}
+	public static ChipEditorOptions.Options LoadOptions()
+    {
+		var path = Path.Combine(CurrentSaveProfileDirectoryPath, "options.json");
+		if (!File.Exists(path))
+			return null;
+		var json = File.ReadAllText(path);
+		return JsonUtility.FromJson<ChipEditorOptions.Options>(json);
 	}
 
 	static string CurrentSaveProfileDirectoryPath {
