@@ -23,7 +23,7 @@ public class PinNameDisplayManager : MonoBehaviour {
 	}
 
 	void LateUpdate () {
-		var mode = editorDisplayOptions.activePinNameDisplayMode;
+		var mode = editorDisplayOptions.options.pinNameDisplayMode;
 		pinsToDisplay.Clear ();
 
 		if (mode == ChipEditorOptions.PinNameDisplayMode.AlwaysMain || mode == ChipEditorOptions.PinNameDisplayMode.AlwaysAll) {
